@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body data-barba="wrapper">
+
+
+
+
+    <div class="nav-container animate">
+
+        <header>
+
+            <!-- this just displays the logo that goes back to the main screen-->
+            <a href="index.html" class="logo">ZHOU</a>
+
+            <!-- implementing hamburger menu for mobile-->
+            <div class="hamburger-menu">
+
+                <input id="menu-toggle" type="checkbox" />
+                <label class="menu-btn" for="menu-toggle">
+
+                </label>
+
+                <div class="hamburger-lines" id="menu">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="expand-menu" id="menu-items">
+
+                <ul class="menu-box">
+
+                    <ul class="content-list">
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="art.html">Illustrations</a></li>
+                        <!-- welcome to the playground -->
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="about.html">Contact</a></li>
+                    </ul>
+
+
+                    <div class="contact">
+                        <div id="email">wokeupbrooao@gmail.com</div>
+
+
+                        <ul class="socials">
+                            <!-- github, linkedIn, instagram, DA -->
+                            <li><a href="projects.html"><ion-icon name="logo-github"></ion-icon></a></li>
+                            <li><a href="projects.html"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                            <li><a href="projects.html"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                            <li><a href="projects.html"><ion-icon name="logo-deviantart"></ion-icon></a></li>
+                        </ul>
+                    </div>
+
+                </ul>
+            </div>
+
+
+        </header>
+
+    </div>
+
+    <main data-barba="container" data-barba-namespace="contact">
+        <div id="loadOverlay"
+            style="background-color: #e6e2de; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:-999;">
+        </div>
+
+        <div class="contactPageWrapper">
+            <div class="contactHeader">
+                <h1>Let's talk</h1>
+                <p>or contact me at alskddf@gmail.com</p>
+            </div>
+            <div class="contactContent">
+                <div class="contact">
+                    <!-- post sendse data as html post transactions -->
+                    <form class="contactForm" method="post">
+                        <div class="row1">
+                            <input type="text" placeholder="Your name" id="name" autocomplete="off">
+                            <input type="email" id="weirdEmail" placeholder="Your email" autocomplete="off">
+                        </div>
+
+                        <div class="row2">
+                            <textarea id="message" placeholder="How can I help? (or send me cool frog facts)" col="1"
+                                rows="10" autocomplete="off"></textarea>
+                        </div>
+
+                        <button type="button" id="sendBtn">Send</button>
+                    </form>
+
+                </div>
+
+                <div class="about">
+                    <h1>About me</h1>
+                    <p>
+                        I'm studying mechatronics engineering at university of waterloo, I like to draw and rewatching
+                        the office
+                    </p>
+                    <ul>
+                        <li><a href="projects.html">Github</a></li>
+                        <li><a href="projects.html">LinkedIn</ion-icon></a></li>
+                        <li><a href="projects.html">Instagra</ion-icon></a></li>
+                        <li><a href="projects.html">devianart</ion-icon></a></li>
+                        <div class="resume">my resume here</div>
+                    </ul>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="page-transition">
+            <div class="text-container">
+                <div class="text" id="text">CONTACT</div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+
+
+    <!-- https://ionic.io/ionicons/usage#logo-instagram -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+
+        $("#sendBtn").click(function () {
+
+            var name = $("#name").val();
+            var email = $("#weirdEmail").val();
+            var msg = $("#message").val();
+            var body = "Name:" + name + "<br/>Email:" + email + "<br/>Message:" + msg;
+            alert(email);
+
+            Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "wokeupbrooao@gmail.com",
+                Password: "C8BC2632F40CFE3EC6FCD2D0B4F74DAC5A03sdada",
+                To: 'wokeupbrooao@gmail.com',
+                From: email,
+                Subject: "Form submitted from website",
+                Body: body
+            }).then(
+                message => alert(message)
+            );
+        });
+    </script>
+    <script type="module" src="/main.js"></script>
+
+
+
+</body>
+
+</html>
