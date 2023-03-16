@@ -1,13 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
+    
+</head>
+
+<body data-barba="wrapper">
+
+
+    <div class="nav-container animate">
+        <!-- <iframe src="projects.html" title="peepeepoopoo">
+      </iframe> -->
+        <header>
+
+            <!-- this just displays the logo that goes back to the main screen-->
+            <a href="index.html" class="logo">ZHOU</a>
+
+            <!-- implementing hamburger menu for mobile-->
+            <div class="hamburger-menu">
+
+                <input id="menu-toggle" type="checkbox" />
+                <label class="menu-btn" for="menu-toggle">
+
+                </label>
+
+                <div class="hamburger-lines" id="menu">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="expand-menu" id="menu-items">
+
+                <ul class="menu-box">
+
+                    <ul class="content-list">
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="art.html">Illustrations</a></li>
+                        <!-- welcome to the playground -->
+                        <li><a href="playground.html">Playground</a></li>
+                        <li><a href="about.html">Contact</a></li>
+                    </ul>
+
+
+                    <div class="contact">
+                        <div id="email">wokeupbrooao@gmail.com</div>
+
+
+                        <ul class="socials">
+                            <!-- github, linkedIn, instagram, DA -->
+                            <li><a href="projects.html"><ion-icon name="logo-github"></ion-icon></a></li>
+                            <li><a href="projects.html"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                            <li><a href="projects.html"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                            <li><a href="projects.html"><ion-icon name="logo-deviantart"></ion-icon></a></li>
+                        </ul>
+                    </div>
+
+                </ul>
+            </div>
+
+
+        </header>
+
+    </div>
+
+    <main data-barba="container" data-barba-namespace="home">
+        <div id="loadOverlay" style="background-color: #e6e2de; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:0;"></div>
+        <canvas id="bg"></canvas>
+        <canvas id="ascii"></canvas>
+        <table id="asciiTable">
+            <tr>
+                <td>
+                    abcde
+                </td>
+            </tr>
+        </table>
+
+        <div id="bgcover"></div>
+        <div id="bgOverlay"></div>
+        <!-- <div id="overlay">
+        </div> -->
+
+        <div class="page-transition">
+            <div class="text-container">
+                <div class="text" id="text">HELLO</div>
+            </div>
+        </div>
+
+        <div class="hero animate" id="hero">
+            <div class="content">
+                <h1>Julia Zhou</h1>
+                <div class="blurb">
+                    Engineering student / Artist / Professional dum
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+
+
+    <!-- https://ionic.io/ionicons/usage#logo-instagram -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="module" src="/main.js"></script>
-  </body>
+
+
+
+</body>
+
 </html>

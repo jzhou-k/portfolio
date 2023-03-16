@@ -10,5 +10,11 @@
   },
   "devDependencies": {
     "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "@barba/core": "^2.9.7",
+    "animejs": "^3.2.1",
+    "jquery": "^3.6.4",
+    "three": "^0.150.1"
   }
 }
