@@ -179,7 +179,7 @@ $(document).on("click", '#sendBtn', function () {
     var email = $("#weirdEmail").val();
     var msg = $("#message").val();
     var body = "Name:" + name + "<br/>Email:" + email + "<br/>Message:" + msg;
-    alert(email);
+    alert(body);
 
     // Host: "smtp.elasticemail.com",
     // Username: "wokeupbrooao@gmail.com",
@@ -187,7 +187,7 @@ $(document).on("click", '#sendBtn', function () {
     Email.send({
         SecureToken: "6768e404-6a93-4371-88f7-b92ec22ca47b",
         To: 'wokeupbrooao@gmail.com',
-        From: email,
+        From: 'wokeupbrooao@gmail.com',
         Subject: "Form submitted from website",
         Body: body
     }).then(
