@@ -181,10 +181,11 @@ $(document).on("click", '#sendBtn', function () {
     var body = "Name:" + name + "<br/>Email:" + email + "<br/>Message:" + msg;
     alert(email);
 
+    // Host: "smtp.elasticemail.com",
+    // Username: "wokeupbrooao@gmail.com",
+    // Password: "C8BC2632F40CFE3EC6FCD2D0B4F74DAC5A03sdada",
     Email.send({
-        Host: "smtp.elasticemail.com",
-        Username: "wokeupbrooao@gmail.com",
-        Password: "C8BC2632F40CFE3EC6FCD2D0B4F74DAC5A03sdada",
+        SecureToken: "6768e404-6a93-4371-88f7-b92ec22ca47b",
         To: 'wokeupbrooao@gmail.com',
         From: email,
         Subject: "Form submitted from website",

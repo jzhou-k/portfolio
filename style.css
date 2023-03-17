@@ -978,6 +978,7 @@ p{
 }
 
 input{
+  font-size: var(--defaultFontsize);
   box-sizing: border-box;
   width: 45%;
   padding-top: 10px;
@@ -1007,7 +1008,7 @@ input{
   background-color: var(--main-background-color);
   border: 2px solid var(--textColor);
   font-family: "roboto", sans-serif;
-  font-size: 24px;
+  font-size: var(--defaultFontsize);
   resize: none;
 }
 
@@ -1022,6 +1023,18 @@ input{
 .about ul 
 {
   padding: 0%;
+}
+
+.about ul li 
+{
+  font-weight: 500;
+  font-size: var(--defaultFontsize)
+}
+
+.about .resumeContent a 
+{
+  font-weight: 600;
+  border-bottom: var(--secondTextColor) 2px solid;
 }
 
 
