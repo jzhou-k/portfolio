@@ -20,6 +20,10 @@
 
 }
 
+::selection {
+  background: rgb(255, 192, 56);
+}
+
 a {
   text-decoration: none;
   color: var(--textColor);
@@ -1033,76 +1037,90 @@ input{
   font-size: 16px;
 }
 
-/* 
-.contactContent 
-{
-  box-sizing: border-box;
-  position: relative;
-  width: 100vw;
-  padding: 5vw;
-}
-
-
-.contactPageWrapper  .contact 
-{
-  box-sizing: border-box;
-  position: relative;
-  width: 60vw;
-  padding: 5vw;
-}
-.contactForm 
-{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: #3AB0FF;
-  padding: 5px;
-}
-
-.row1 
-{
-  display: flex;
-}
-
-input, textarea{
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px;
-
-}
-
-
-#sendBtn 
-{
-  background-color: #fff;
-  border: none;
-  outline: none;
-  width: 200px;
-
-}
-
-.about 
-{
-  box-sizing: border-box;
-  position: relative;
-  padding: 5.5vw;
-}
-
-.about h1 
-{
-  font-weight: 900;
-  font-style: bold;
-  line-height: 1em;
-  font-size: clamp(2rem, 3vw, 6rem);
-  text-transform: uppercase;
-  color: var(--textColor);
-}
-
-.about ul 
-{
-  padding: 0%;
-} */
-
-
-
 /* for mobile do display vertical and make widht to 100 */
+
+/* ###################PLAYGROUND################### */
+
+.mainPlayground
+{
+  display: flex;
+  position: relative;
+  z-index: 22;
+  width: 100vw; 
+  height: 90vh;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.mainPlayground.animate.behind
+{
+  display: flex;
+  position: relative;
+  z-index: -1;
+  width: 100vw; 
+  height: 90vh;  
+}
+
+.mainPlayground ul 
+{
+  width: 30%;
+  padding-right: 30px;
+
+}
+
+.mainPlayground li span 
+{
+  font-size:1.3rem; 
+  font-weight:600;
+  padding-bottom: 5px; 
+  padding-right: 5px; 
+  font-family:'Courier New', Courier, monospace;
+}
+
+.mainPlayground li 
+{
+  font-size: 2rem;
+  padding: 5px;
+  border-bottom: var(--secondTextColor) solid 2px ;
+}
+
+.playgroundContents 
+{
+
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 80%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.playgroundContent
+{
+  position: absolute;
+
+  top: 0%;
+  left: 0%;
+}
+
+.playgroundContents img 
+{
+  width: 100%;
+  height: auto;
+}
+
+.playgroundContents h1 
+{
+  font-size: 7rem;
+  text-transform: uppercase;
+}
+
+#playgroundContent
+{
+  opacity: 1;
+}
+
+#inverseKinematics 
+{
+  opacity: 0;
+}

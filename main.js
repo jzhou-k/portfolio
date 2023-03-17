@@ -53,9 +53,11 @@ hamMenuToggle.addEventListener("change", () => {
 function animateHam() {
     hamMenu.classList.toggle("openHam");
     hamMenuItems.classList.toggle("expand-menu-open")
+    $(".mainPlayground").toggleClass('behind')
 
     if (menuOpen) {
 
+        $('.mainPlayground').attr('style', 'opacity: 0;');
         $(".expand-menu").css({ "transform": "" });
 
         for (const item of listItems) {
@@ -77,6 +79,8 @@ function animateHam() {
         menuOpen = false;
     } else {
         menuOpen = true;
+        $('.mainPlayground').attr('style', 'opacity: 1;');
+
 
         $(".contact").children().css("animation-delay", "0s");
         $(".contact").children().css("animation-name", "menuAnimateReverse");
@@ -126,7 +130,7 @@ $("li a").hover(
 //     console.log("hello");
 // });
 
-// DYNAMICALLY LOADED ELEMENT 
+// DYNAMICALLY LOADED ELEMENT ###fix for javascript ONLY loading after REFRESH
 $(document).on('mouseenter', '#projects .content', function () {
     console.log("FUCKING WORK BITCH");
     console.log($(this));
@@ -169,45 +173,71 @@ $(document).on('mouseleave', '#projects .content', function () {
     $(".content").css("filter", "blur(0px)");
 });
 
-// $("#projects .content").hover(
-//     //  find the width at the moment
 
-//     function () {
-//         console.log($(this));
-//         // get id 
-//         Aname = $(this).find("h1").text();
-//         console.log(Aname);
-//         $("." + Aname)
-//             .addClass("bg-open")
-//             .removeClass(Aname);
+$(document).on("click", '#sendBtn', function () {
+    var name = $("#name").val();
+    var email = $("#weirdEmail").val();
+    var msg = $("#message").val();
+    var body = "Name:" + name + "<br/>Email:" + email + "<br/>Message:" + msg;
+    alert(email);
+
+    Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "wokeupbrooao@gmail.com",
+        Password: "C8BC2632F40CFE3EC6FCD2D0B4F74DAC5A03sdada",
+        To: 'wokeupbrooao@gmail.com',
+        From: email,
+        Subject: "Form submitted from website",
+        Body: body
+    }).then(
+        message => alert(message)
+    );
+});
+
+var historyName = "#playgroundContent";
+$(document).on("click", '.mainPlayground ul li', function () {
+
+    // closes previous tab 
+    $(historyName).css("opacity", "0");
+
+    var playgroundName = $(this).text().toLowerCase().substring(2);
+
+    console.log(playgroundName);
+    // if (playgroundName == "playground")
+    // {
+    //     playgroundFuncton();
+    //     historyName = "#playgroundContent"; 
+    // }
 
 
-//         $(".content").css("filter", "blur(2.5px)");
-//         $(this).css("filter", "blur(0)");
+    switch (playgroundName) {
+        case "playground":
+            // block of code to execute if expression matches value1
+            playgroundFuncton();
+            historyName = "#playgroundContent";
+            break;
+        case "inverse kinematics":
+            inverseKinematics()
+            historyName = "#inverseKinematics";
+            // block of code to execute if expression matches value2
+            break;
+
+        default:
+        // block of code to execute if expression does not match any of the cases
+    }
 
 
-//         $(".content").css("opacity", "70%");
-//         $(this).css("opacity", "100%");
 
-//         var top = $(this).position().top;
-//         console.log(top);
-//         height = $(this).outerHeight(true);
-//         console.log("Height" + height);
+});
 
-//         $(".bg-open").css("top", top);
-//         $(".bg-open").css("height", height);
-//         $(".bg-open").css("background-color", "#fff");
+function playgroundFuncton() {
+    //this just displays playground div, in the future this function can do other things 
+    $('#playgroundContent').css("opacity", "1");
+}
 
-//     },
-
-
-//     function () {
-//         $(".bg-open").addClass(Aname).removeClass("bg-open");
-
-//         $(".content").css("opacity", "100%");
-//         $(".content").css("filter", "blur(0px)");
-//     }
-// );
+function inverseKinematics() {
+    $('#inverseKinematics').css("opacity", "1");
+}
 
 
 $("#email").click(function () {
@@ -227,13 +257,18 @@ function copyToClipboard(text) {
 }
 
 
+//#############TRANSITION ANIMATIONS#####################
 
 function pageTransition(page, finished) {
     //page is the page we are going into 
 
     // Target the word element
     const word = document.getElementById("text");
+
     word.innerHTML = page;
+    if (page == "PLAYGROUND") {
+        word.style.fontSize = "12vw";
+    }
     // Split the word into an array of letters
     const letters = word.innerHTML.split("");
 
@@ -391,7 +426,6 @@ function contentAnimation(pageName) {
 
     }
 
-
     tl.finished.then(
         function () {
             $(".content").css("pointer-events", "auto");
@@ -491,10 +525,10 @@ function firstPageTransition(page, finished) {
 
     tl.add({
 
-        targets: "#loadOverlay", 
-        opacity: [1,0],
-        duration: 1000, 
-    },"-=600");
+        targets: "#loadOverlay",
+        opacity: [1, 0],
+        duration: 1000,
+    }, "-=600");
 
 
     tl.finished.then(finished);
@@ -503,8 +537,6 @@ function firstPageTransition(page, finished) {
 
 
 }
-
-
 
 
 
@@ -521,15 +553,6 @@ function delay(n) {
 
 
 
-// $(function(){
-//     barba.init({})
-
-
-
-// })
-
-//################################EWMAIL FORM SUBMISSION##############################
-
 //###############################ANIMATION#####################################
 
 var container;
@@ -542,15 +565,15 @@ var processed_width = Math.round(window.innerWidth * resolution);
 var processed_height = Math.round(window.innerHeight * resolution);
 var fLetterSpacing = 0;
 var strFont = "courier new, monospace";
-var fFontSize = (2 / resolution);
+var fFontSize = (3 / resolution);
 
-var stopAnimate = true; 
+var stopAnimate = true;
 
 barba.hooks.beforeEnter((data) => {
     console.log(data.next.namespace);
     // console.log(document.querySelector('#menu-items'));
     closeHam();     // get closeHam 
-    stopAnimate = true; 
+    stopAnimate = true;
 
 
 });
@@ -574,6 +597,7 @@ $(function () {
                     // console.log(page);
                     if (page == "PROJECTS") {
                         data.next.container.querySelector("#projects").style.pointerEvents = "none";
+                        console.log(data.next.container);
                     }
 
                     // $(".content").css("pointer-events","none");
@@ -590,7 +614,7 @@ $(function () {
                 async enter(data) {
 
                     var pageName = (data.next.namespace).toString();
-                    console.log(pageName);
+                    console.log("THis page" + pageName);
 
                     $(".content").css("opacity", "100%");
                     $(".content").css("filter", "blur(0px)");
@@ -618,15 +642,13 @@ $(function () {
 
                     //use on load to hide everything on first page -> bg cover -> then after everthing loaded, hide it back by shift z index 
                     if (data.next.namespace == "home") {
-                        console.log("??");
-
                         firstPageTransition(page, () => {
                             console.log("done");
                             data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                             done();
                         });
                     }
-                    
+
                     // console.log(data.next.container.querySelector("#loadOverlay"));
                     // data.next.container.querySelector("#loadOverlay").style.display = "none";
                     // contentAnimation();
@@ -640,12 +662,19 @@ $(function () {
             {
                 namespace: 'home',
                 async beforeEnter(data) {
-                    
+                    $('.logo').attr("href", "index.html")
+                    $('.content-list #art a').attr("href", "illustrations/art.html")
+                    $('.content-list #projects a').attr("href", "projects/projects.html")
+                    $('.content-list #about a').attr("href", "about.html")
+                    $('.content-list #playground a').attr("href", "playground.html")
                     console.log("before enter home");
 
+                    //CHANGE DOM ELEMENT 
+
+
                     stopAnimate = false;
-                    init(); 
-                    animate(); 
+                    init();
+                    animate();
                     function init() {
                         console.log("Run animation");
                         scene = new THREE.Scene();
@@ -737,7 +766,7 @@ $(function () {
 
                     function printImgData(renderer, processed_width, processed_height, asciiTable) {
                         // console.log(asciiTable.innerHTML);
-                        var aCharList = ('.,:;1)fLCG08@').split("");
+                        var aCharList = ('.,:;-)fL8#08@').split("");
                         var strChars = '';
 
                         var oCanvasImg = renderer;
@@ -787,9 +816,8 @@ $(function () {
                     }
 
                     function animate() {
-                        if (!stopAnimate)
-                        {
-                                                        // console.log("Animate cube");
+                        if (!stopAnimate) {
+                            // console.log("Animate cube");
                             requestAnimationFrame(animate);
                             cube.rotation.x += 0.003;
                             cube.rotation.y += 0.003;
@@ -797,20 +825,90 @@ $(function () {
                             //yay it works! 
                             printImgData(renderer.domElement, processed_width, processed_height, asciiTable);
 
-                        //   printImgData(); 
+                            //   printImgData(); 
                         }
 
                     }
 
                 }
+
             },
+            {
+                namespace: 'contact',
+                async beforeEnter(data) {
+                    $('.logo').attr("href", "index.html")
+                    $('.content-list #project a').attr("href", "projects/project.html")
+                    $('.content-list #art a').attr("href", "illustrations/art.html")
+                    $('.content-list #about a').attr("href", "about.html")
+                    $('.content-list #playground a').attr("href", "playground.html")
+
+                    console.log("wtf");
+                    data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
+                    contentAnimation("contact");
+                }
+            },
+            {
+                namespace: 'projects',
+                //change every link to ../ 
+
+                async beforeEnter(data) {
+                    // $(".content-list li").each(function(){$(this).css("background-color","black")})
+                    // $.map( $('.content-list li a'), function (element) { $(element).attr("href","../about.html")});
+
+                    $('.logo').attr("href", "../index.html")
+                    $('.content-list #projects a').attr("href", "projects.html")
+                    $('.content-list #art a').attr("href", "../illustrations/art.html")
+                    $('.content-list #about a').attr("href", "../about.html")
+                    $('.content-list #playground a').attr("href", "../playground.html")
+                    console.log("fuck me projects");
+                    data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
+                    contentAnimation("projects");
+                }
+            },
+            {
+                namespace: 'art',
+                async beforeEnter(data) {
+
+                    $('.logo').attr("href", "../index.html")
+                    $('.content-list #art a').attr("href", "art.html")
+                    $('.content-list #projects a').attr("href", "../projects/projects.html")
+                    $('.content-list #about a').attr("href", "../about.html")
+                    $('.content-list #playground a').attr("href", "../playground.html")
+
+                    console.log("fuck me ");
+                    data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
+                    contentAnimation("art");
+                }
+            },
+            {
+                namespace: 'playground',
+                async beforeEnter(data) {
+                    // $(".content-list li").each(function(){$(this).css("background-color","black")})
+                    // $.map( $('.content-list li a'), function (element) { 
+
+                    //     linkName = $(element).text().toLowerCase();
+                    //     console.log(linkName);
+                    //     newUrl = "../" + linkName + ".html";
+
+                    //     $(element).attr("href",newUrl)});
+                    $('.logo').attr("href", "index.html")
+                    $('.content-list #art a').attr("href", "illustrations/art.html")
+                    $('.content-list #projects a').attr("href", "projects/projects.html")
+                    $('.content-list #about a').attr("href", "about.html")
+                    $('.content-list #playground a').attr("href", "playground.html")
+
+                    console.log("fuck me ");
+                    data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
+                    contentAnimation("art");
+                }
+            }
             // {
             //     namespace: 'project',
             //     async beforeEnter(data) {
 
-                  
 
-                    
+
+
 
             //     }
             // }

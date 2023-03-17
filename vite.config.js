@@ -8,7 +8,11 @@ export default defineConfig({
         rollupOptions: {
           input: {
             main: path.resolve(__dirname, 'index.html'),
-            about: path.resolve(__dirname, 'projects/projects.html')
+            project: path.resolve(__dirname, 'projects/projects.html'),
+            about: path.resolve(__dirname,'about.html'),
+            playground: path.resolve(__dirname, 'playground.html'),
+            arts: path.resolve(__dirname, 'illustrations/art.html'), 
+
           }
         }
       }

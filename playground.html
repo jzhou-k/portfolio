@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body data-barba="wrapper">
+
+
+    <div class="nav-container animate">
+
+        <header>
+
+            <!-- this just displays the logo that goes back to the main screen-->
+            <a href="../index.html" class="logo">ZHOU</a>
+
+            <!-- implementing hamburger menu for mobile-->
+            <div class="hamburger-menu">
+
+                <input id="menu-toggle" type="checkbox" />
+                <label class="menu-btn" for="menu-toggle">
+
+                </label>
+
+                <div class="hamburger-lines" id="menu">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="expand-menu" id="menu-items">
+
+                <ul class="menu-box">
+
+                    <ul class="content-list">
+                        <li id="projects"><a href="projects/projects.html">Projects</a></li>
+                        <li id="art"><a href="illustrations/art.html">Illustrations</a></li>
+                        <!-- welcome to the playground -->
+                        <li id="playground"><a href="playground.html">Playground</a></li>
+                        <li id="about"><a href="about.html">Contact</a></li>
+                    </ul>
+
+
+                    <div class="contact">
+                        <div id="email">wokeupbrooao@gmail.com</div>
+
+
+                        <ul class="socials">
+                            <!-- github, linkedIn, instagram, DA -->
+                            <li><a href="https://github.com/jzhou-k/"><ion-icon name="logo-github"></ion-icon></a></li>
+                            <li><a href="https://www.linkedin.com/in/julia-zhou-088b08231/"><ion-icon
+                                        name="logo-linkedin"></ion-icon></a></li>
+                            <li><a href="https://www.instagram.com/kulnifer_/"><ion-icon
+                                        name="logo-instagram"></ion-icon></a></li>
+                            <li><a href="https://www.deviantart.com/kulnifer"><ion-icon
+                                        name="logo-deviantart"></ion-icon></a></li>
+                        </ul>
+                    </div>
+
+                </ul>
+            </div>
+
+
+        </header>
+
+    </div>
+    <main data-barba="container" data-barba-namespace="playground">
+
+        <div id="loadOverlay"
+            style="background-color: #e6e2de; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:999;">
+        </div>
+        <div class="mainPlayground animate">
+
+            <ul>
+                <li style = "display: flex; align-items: center;"><span>1/</span>Playground</li>
+                <li style = "display: flex; align-items: center;"><span>2/</span>Inverse kinematics</li>
+            </ul>
+
+
+            <div class ="playgroundContents"> 
+                <div class = "playgroundContent" id = "playgroundContent"> 
+                    <img src="playground.jpg">
+                    <h1>welcome to the playground</h1>
+                    <p>I put a bunch of small and silly experiments here, currently a WIP
+
+                    </p>
+                </div>
+                <div class = "playgroundContent" id = "inverseKinematics"> 
+                    <img src="playground.jpg">
+                    <h1>Inverse kinematics</h1>
+                    <p>This goofy goober algorithm is commonly used in robotic arms
+
+                    </p>
+                </div>
+            </div>
+           
+
+        </div>
+        <div class="page-transition">
+            <div class="text-container">
+                <div class="text" id="text">PLAYGROUND</div>
+            </div>
+        </div>
+
+    </main>
+
+
+
+
+
+    <!-- https://ionic.io/ionicons/usage#logo-instagram -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="/main.js"></script>
+
+
+</body>
+
+</html>
