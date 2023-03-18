@@ -52,13 +52,13 @@ hamMenuToggle.addEventListener("change", () => {
 
 function animateHam() {
     hamMenu.classList.toggle("openHam");
-    hamMenuItems.classList.toggle("expand-menu-open")
-    $(".mainPlayground").toggleClass('behind')
+    hamMenuItems.classList.toggle("expand-menu-open");
 
     if (menuOpen) {
 
-        $('.mainPlayground').attr('style', 'opacity: 0;');
+
         $(".expand-menu").css({ "transform": "" });
+        $('.mainPlayground').attr('style', 'opacity: 0');
 
         for (const item of listItems) {
             i += 100;
@@ -79,7 +79,8 @@ function animateHam() {
         menuOpen = false;
     } else {
         menuOpen = true;
-        $('.mainPlayground').attr('style', 'opacity: 1;');
+        $('.mainPlayground').attr('style', 'opacity: 1');
+        $('.mainPlayground').css("transition","all 0.5s");
 
 
         $(".contact").children().css("animation-delay", "0s");
@@ -174,26 +175,67 @@ $(document).on('mouseleave', '#projects .content', function () {
 });
 
 
-$(document).on("click", '#sendBtn', function () {
-    var name = $("#name").val();
-    var email = $("#weirdEmail").val();
-    var msg = $("#message").val();
-    var body = "Name:" + name + "<br/>Email:" + email + "<br/>Message:" + msg;
-    alert(body);
+$(document).on("mouseenter", '#sendBtn', function () {
+    console.log("bruh");
+    document.getElementById('contactForm')
+    .addEventListener('submit', function(event) {
+      event.preventDefault();
+       console.log("this shitty contact form is working"); 
+   
+      const serviceID = 'service_ny355sc';
+      const templateID = 'template_21i6elu';
+   
+      emailjs.sendForm(serviceID, templateID, this)
+       .then(() => {
 
-    // Host: "smtp.elasticemail.com",
-    // Username: "wokeupbrooao@gmail.com",
-    // Password: "C8BC2632F40CFE3EC6FCD2D0B4F74DAC5A03sdada",
-    Email.send({
-        SecureToken: "6768e404-6a93-4371-88f7-b92ec22ca47b",
-        To: 'wokeupbrooao@gmail.com',
-        From: 'wokeupbrooao@gmail.com',
-        Subject: "Form submitted from website",
-        Body: body
-    }).then(
-        message => alert(message)
-    );
+         alert('Sent!');
+       }, (err) => {
+         
+         alert(JSON.stringify(err));
+       });
+   });
+   
 });
+
+
+// document.getElementById('contactForm')
+//  .addEventListener('submit', function(event) {
+//    event.preventDefault();
+//     console.log("this shitty contact form is working"); 
+// //    btn.value = 'Sending...';
+
+// //    const serviceID = 'default_service';
+// //    const templateID = 'template_21i6elu';
+
+// //    emailjs.sendForm(serviceID, templateID, this)
+// //     .then(() => {
+// //       btn.value = 'Send Email';
+// //       alert('Sent!');
+// //     }, (err) => {
+// //       btn.value = 'Send Email';
+// //       alert(JSON.stringify(err));
+// //     });
+// });
+
+
+
+// $(document).on("click", '#sendBtn', function () {
+//     var name = $("#name").val();
+//     var email = $("#weirdEmail").val();
+//     var msg = $("#message").val();
+//     var body = "Name:" + name + "<br/>Email:" + email + "<br/>Message:" + msg;
+//     alert(body);
+
+//     // Host: "smtp.elasticemail.com",
+//     // Username: "wokeupbrooao@gmail.com",
+//     // Password: "C8BC2632F40CFE3EC6FCD2D0B4F74DAC5A03sdada",
+//     emailjs.sendForm('contact_service', 'contact_form', this)
+//                     .then(function() {
+//                         console.log('SUCCESS!');
+//                     }, function(error) {
+//                         console.log('FAILED...', error);
+//                     });
+// });
 
 var historyName = "#playgroundContent";
 $(document).on("click", '.mainPlayground ul li', function () {
@@ -261,6 +303,7 @@ function copyToClipboard(text) {
 //#############TRANSITION ANIMATIONS#####################
 
 function pageTransition(page, finished) {
+  
     //page is the page we are going into 
 
     // Target the word element
@@ -400,7 +443,7 @@ function contentAnimation(pageName) {
     tl.add({
         targets: ".animate",
         opacity: [0, 1],
-        duration: 1000
+        duration: 700
     });
 
     if (pageName == "home" || pageName == null) {
@@ -432,6 +475,22 @@ function contentAnimation(pageName) {
             $(".content").css("pointer-events", "auto");
         }
     );
+}
+
+function playgroundFadeOut(){
+    anime({
+        targets: ".mainPlayground",
+        opacity: [1,0],
+        duraton: 0
+    });
+}
+
+function playgroundFadeIn(){
+    anime({
+        targets: ".mainPlayground",
+        opacity: [0,1],
+        duraton: 0
+    });
 }
 
 function firstPageTransition(page, finished) {
@@ -592,6 +651,7 @@ $(function () {
 
                     // why doesnt id work?
                     // console.log(data.next.container.querySelector(".load-container .page-transition .text-container .text").innerHTML);
+                   
 
                     var page = "gay";
                     page = data.next.container.querySelector(".page-transition .text-container .text").innerHTML;
@@ -901,6 +961,12 @@ $(function () {
                     console.log("fuck me ");
                     data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                     contentAnimation("art");
+                },
+
+                async afterLeave() 
+                {
+                    console.log("wtf is this shit");
+                    $('.mainPlayground').attr('style', 'opacity: 0;');
                 }
             }
             // {

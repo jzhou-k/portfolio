@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/portfolio/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg">
+    <link rel="icon" type="image/png" href="/portfolio/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <script type="module" crossorigin src="/portfolio/assets/main-664b01d4.js"></script>
-  <link rel="stylesheet" href="/portfolio/assets/main-4f3c9231.css">
+  <script type="module" crossorigin src="/portfolio/assets/main-7399aca9.js"></script>
+  <link rel="stylesheet" href="/portfolio/assets/main-9cbeb908.css">
 </head>
 
 <body data-barba="wrapper">
@@ -87,18 +88,18 @@
             <div class="contactContent">
                 <div class="contact">
                     <!-- post sendse data as html post transactions -->
-                    <form class="contactForm" method="post">
+                    <form id="contactForm">
                         <div class="row1">
-                            <input type="text" placeholder="Your name" id="name" autocomplete="off">
-                            <input type="email" id="weirdEmail" placeholder="Your email" autocomplete="off">
+                            <input type="text" name = "from_name" placeholder="Your name" id="name" autocomplete="off">
+                            <input type="email" name = "user_email" id="weirdEmail" placeholder="Your email" autocomplete="off">
                         </div>
 
                         <div class="row2">
-                            <textarea id="message" placeholder="How can I help? (or send me cool frog facts)" col="1"
+                            <textarea id="message" name = "message" placeholder="How can I help? (or send me cool frog facts)" col="1"
                                 rows="10" autocomplete="off"></textarea>
                         </div>
 
-                        <button type="button" id="sendBtn">Send</button>
+                        <button type="submit" id="sendBtn">Send</button>
                     </form>
 
                 </div>
@@ -116,7 +117,7 @@
                         <li><a href="https://www.deviantart.com/kulnifer"><ion-icon name="logo-deviantart"></ion-icon>Deviantart</a></li>
                         <li>
                             <div class="resumeContent">
-                                <a href="JuliaZhouResume.pdf" target="_blank" rel="noopener noreferrer">
+                                <a href="/portfolio/JuliaZhouResume.pdf" target="_blank" rel="noopener noreferrer">
                                     My Resume
                                 </a>
                             </div>
@@ -136,74 +137,23 @@
         </div>
 
         
-        <script>
-    
-    
-            // $(document).on('mouseenter', '#projects .content', function () {
-            //     console.log("FUCKING WORK BITCH");
-            //     console.log($(this));
-            //     // get id 
-            //     var Aname = "hehe"
-            //     Aname = $(this).attr("id");
-            //     console.log(Aname);
-            //     $("." + Aname)
-            //         .addClass("bg-open")
-            //         .removeClass(Aname);
-    
-    
-            //     $(".content").css("filter", "blur(2.5px)");
-            //     $(this).css("filter", "blur(0)");
-    
-    
-            //     $(".content").css("opacity", "70%");
-            //     $(this).css("opacity", "100%");
-    
-            //     var top = $(this).position().top;
-            //     var height = 0;
-            //     height = $(this).outerHeight(true);
-    
-    
-            //     $(".bg-open").css("top", top);
-            //     $(".bg-open").css("height", height);
-            //     $(".bg-open").css("background-color", "#e6e2de");
-    
-    
-    
-            // });
-
-            // $("#sendBtn").click(function () {
-    
-            //     var name = $("#name").val();
-            //     var email = $("#weirdEmail").val();
-            //     var msg = $("#message").val();
-            //     var body = "Name:" + name + "<br/>Email:" + email + "<br/>Message:" + msg;
-            //     alert(email);
-    
-            //     Email.send({
-            //         Host: "smtp.elasticemail.com",
-            //         Username: "wokeupbrooao@gmail.com",
-            //         Password: "C8BC2632F40CFE3EC6FCD2D0B4F74DAC5A03sdada",
-            //         To: 'wokeupbrooao@gmail.com',
-            //         From: email,
-            //         Subject: "Form submitted from website",
-            //         Body: body
-            //     }).then(
-            //         message => alert(message)
-            //     );
-            // });
-        </script>
-
 
     </main>
 
 
 
 
-    <script src="https://smtpjs.com/v3/smtp.js">
-    </script>
     <!-- https://ionic.io/ionicons/usage#logo-instagram -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('lCAExxdRptSzalSFE');
+        })();
+    </script>
     
 
 

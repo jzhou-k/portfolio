@@ -89,9 +89,9 @@ body {
   font-family: "roboto", sans-serif;
   font-weight: 900;
   font-style: bold;
-  font-size: larger;
+  font-size: 1.5rem;
   z-index: 2;
-  color: #d85300;
+  color: var(--secondTextColor);
 }
 
 .nav-container {
@@ -1062,7 +1062,6 @@ input{
   width: 100vw; 
   height: 90vh;
   opacity: 0;
-  transition: all 0.3s;
 }
 
 .mainPlayground.animate.behind
@@ -1111,7 +1110,7 @@ input{
 .playgroundContent
 {
   position: absolute;
-
+  width: 100%;
   top: 0%;
   left: 0%;
 }
