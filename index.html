@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/portfolio/vite.svg" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg">
+    <link rel="icon" type="image/png" href="/portfolio/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
 
-  <script type="module" crossorigin src="/portfolio/assets/main-664b01d4.js"></script>
-  <link rel="stylesheet" href="/portfolio/assets/main-4f3c9231.css">
+  <script type="module" crossorigin src="/portfolio/assets/main-7399aca9.js"></script>
+  <link rel="stylesheet" href="/portfolio/assets/main-9cbeb908.css">
 </head>
 
 <body data-barba="wrapper">
@@ -118,7 +120,12 @@
     <!-- https://ionic.io/ionicons/usage#logo-instagram -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('lCAExxdRptSzalSFE');
+        })();
     </script>
     
 
