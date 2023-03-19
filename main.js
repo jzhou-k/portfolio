@@ -58,7 +58,7 @@ function animateHam() {
 
 
         $(".expand-menu").css({ "transform": "" });
-        $('.mainPlayground').attr('style', 'opacity: 0');
+        $('.mainPlayground').attr('style', 'opacity: 0; z-index: -1');
 
         for (const item of listItems) {
             i += 100;
@@ -79,7 +79,7 @@ function animateHam() {
         menuOpen = false;
     } else {
         menuOpen = true;
-        $('.mainPlayground').attr('style', 'opacity: 1');
+        $('.mainPlayground').attr('style', 'opacity: 1; z-index: 1');
         $('.mainPlayground').css("transition","all 0.5s");
 
 
@@ -133,7 +133,6 @@ $("li a").hover(
 
 // DYNAMICALLY LOADED ELEMENT ###fix for javascript ONLY loading after REFRESH
 $(document).on('mouseenter', '#projects .content', function () {
-    console.log("FUCKING WORK BITCH");
     console.log($(this));
     // get id 
     var Aname = "hehe"
@@ -174,26 +173,31 @@ $(document).on('mouseleave', '#projects .content', function () {
     $(".content").css("filter", "blur(0px)");
 });
 
-
+var once = false; 
 $(document).on("mouseenter", '#sendBtn', function () {
     console.log("bruh");
-    document.getElementById('contactForm')
-    .addEventListener('submit', function(event) {
-      event.preventDefault();
-       console.log("this shitty contact form is working"); 
-   
-      const serviceID = 'service_ny355sc';
-      const templateID = 'template_21i6elu';
-   
-      emailjs.sendForm(serviceID, templateID, this)
-       .then(() => {
-
-         alert('Sent!');
-       }, (err) => {
-         
-         alert(JSON.stringify(err));
+    if (!once)
+    {
+        document.getElementById('contactForm')
+        .addEventListener('submit', function(event) {
+          event.preventDefault();
+           console.log("this shitty contact form is working"); 
+       
+          const serviceID = 'service_ny355sc';
+          const templateID = 'template_21i6elu';
+       
+          emailjs.sendForm(serviceID, templateID, this)
+           .then(() => {
+    
+             alert('Sent!');
+           }, (err) => {
+             
+             alert(JSON.stringify(err));
+           });
        });
-   });
+       once = true;
+    }
+    
    
 });
 
@@ -287,7 +291,7 @@ $("#email").click(function () {
 
     var text = $(this).text();
     copyToClipboard(text);
-    console.log(text);
+
 
 })
 
@@ -319,7 +323,6 @@ function pageTransition(page, finished) {
     // Replace the word with spans for each letter
     word.innerHTML = letters.map((letter) => `<span>${letter}</span>`).join("");
 
-    console.log("function is called");
     //time line to link animation togehter
     var tl = anime.timeline({
         easing: "easeOutExpo",
@@ -630,7 +633,7 @@ var fFontSize = (3 / resolution);
 var stopAnimate = true;
 
 barba.hooks.beforeEnter((data) => {
-    console.log(data.next.namespace);
+    // console.log(data.next.namespace);
     // console.log(document.querySelector('#menu-items'));
     closeHam();     // get closeHam 
     stopAnimate = true;
@@ -658,12 +661,12 @@ $(function () {
                     // console.log(page);
                     if (page == "PROJECTS") {
                         data.next.container.querySelector("#projects").style.pointerEvents = "none";
-                        console.log(data.next.container);
+                        // console.log(data.next.container);
                     }
 
                     // $(".content").css("pointer-events","none");
                     pageTransition(page, () => {
-                        console.log("done");
+                        // console.log("done");
                         data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                         done();
                     });
@@ -704,7 +707,7 @@ $(function () {
                     //use on load to hide everything on first page -> bg cover -> then after everthing loaded, hide it back by shift z index 
                     if (data.next.namespace == "home") {
                         firstPageTransition(page, () => {
-                            console.log("done");
+                            // console.log("done");
                             data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                             done();
                         });
@@ -728,7 +731,7 @@ $(function () {
                     $('.content-list #projects a').attr("href", "projects/projects.html")
                     $('.content-list #about a').attr("href", "about.html")
                     $('.content-list #playground a').attr("href", "playground.html")
-                    console.log("before enter home");
+                    // console.log("before enter home");
 
                     //CHANGE DOM ELEMENT 
 
@@ -737,7 +740,7 @@ $(function () {
                     init();
                     animate();
                     function init() {
-                        console.log("Run animation");
+                        // console.log("Run animation");
                         scene = new THREE.Scene();
                         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
                         renderer = new THREE.WebGLRenderer({
@@ -903,7 +906,7 @@ $(function () {
                     $('.content-list #about a').attr("href", "about.html")
                     $('.content-list #playground a').attr("href", "playground.html")
 
-                    console.log("wtf");
+                    
                     data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                     contentAnimation("contact");
                 }
@@ -921,7 +924,7 @@ $(function () {
                     $('.content-list #art a').attr("href", "../illustrations/art.html")
                     $('.content-list #about a').attr("href", "../about.html")
                     $('.content-list #playground a').attr("href", "../playground.html")
-                    console.log("fuck me projects");
+                  
                     data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                     contentAnimation("projects");
                 }
@@ -936,7 +939,7 @@ $(function () {
                     $('.content-list #about a').attr("href", "../about.html")
                     $('.content-list #playground a').attr("href", "../playground.html")
 
-                    console.log("fuck me ");
+              
                     data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                     contentAnimation("art");
                 }
@@ -958,14 +961,13 @@ $(function () {
                     $('.content-list #about a').attr("href", "about.html")
                     $('.content-list #playground a').attr("href", "playground.html")
 
-                    console.log("fuck me ");
                     data.next.container.querySelector("#loadOverlay").style.zIndex = "-999";
                     contentAnimation("art");
                 },
 
                 async afterLeave() 
                 {
-                    console.log("wtf is this shit");
+                    
                     $('.mainPlayground').attr('style', 'opacity: 0;');
                 }
             }
